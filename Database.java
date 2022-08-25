@@ -16,18 +16,5 @@ public class Database{
             System.out.println(e.getMessage());
         } 
         return conn;
-    }
-    
-    
-//    public void insert
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    }    
 }
