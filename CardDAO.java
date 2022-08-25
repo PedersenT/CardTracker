@@ -10,7 +10,7 @@ import java.sql.Statement;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-//lage en egen klasse for scraper? kalle på metodene derfra når nødvendig
+//lage en egen klasse for scraper? kalle pÃ¥ metodene derfra nÃ¥r nÃ¸dvendig
 public class CardDAO {
 
 //	add card manually to database. Used in addCard() to add cards with url, price_mine, condition
@@ -42,7 +42,7 @@ public class CardDAO {
       }
       }
 	}
-//	Badly optimised. could have put in 
+//	Badly optimised. should have the code from each scrape directly in this method
 	public static void addCard(String pageUrl, double myPrice, String cardCondition) {
 		addCardManually(scrapeName(pageUrl), scrapeSet(pageUrl), cardCondition, myPrice, scrapePrice_trend(pageUrl), pageUrl);
 	}
@@ -67,7 +67,7 @@ public class CardDAO {
 			final Document doc = Jsoup.connect(url).get();
 			final String input_trend = doc.select("dd.col-xl-7.col-6:nth-of-type(10)").text();
 			final String temp_trend1 = input_trend.replace(",", ".");
-			final String temp_trend2 = temp_trend1.replace("€", "");
+			final String temp_trend2 = temp_trend1.replace("â‚¬", "");
 			price_trend = Double.parseDouble(temp_trend2);
 		}
 		catch(IOException e) {
@@ -77,10 +77,9 @@ public class CardDAO {
 	}
 	
 //	output er navn og sett. hente fra url og fjerne bindestreker
-//	(vil da også fjerne bindestreker i navnet)? burde få til fra
-//	tittel på siden
-	
-//	kun "" rundt kortnavnet. bruke " nr to som end på det vil scraper?
+//	(vil da ogsÃ¥ fjerne bindestreker i navnet)? burde fÃ¥ til fra
+//	tittel pÃ¥ siden
+//	kun "" rundt kortnavnet. bruke " nr to som end pÃ¥ det vil scraper?
 	public static String scrapeName(String pageUrl) {
 		String url = pageUrl;
 		String name=null;
@@ -119,7 +118,7 @@ public class CardDAO {
 	    }
 		}
 	}
-//	https://www.digitalocean.com/community/tutorials/java-resultset
+
 	public static void database_update() {
 		
 		double diff_percent=0.05;
