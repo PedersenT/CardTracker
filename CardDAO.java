@@ -118,7 +118,8 @@ public class CardDAO {
 	    }
 		}
 	}
-
+// scrapes info from cardmarket and compares it to the database. If theres too much difference between 
+// my sell price and the sell price on cardmarket, print the difference and name of the card
 	public static void database_update() {
 		
 		double diff_percent=0.05;
